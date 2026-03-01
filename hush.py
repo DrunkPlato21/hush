@@ -31,6 +31,7 @@ Audio files:
 
 __version__ = '1.0.0'
 
+import ctypes
 import os
 import sys
 import threading
@@ -350,6 +351,10 @@ def _build_menu() -> pystray.Menu:
 
 
 def main():
+    _mutex = ctypes.windll.kernel32.CreateMutexW(None, False, "Global\\HushTrayApp")
+    if ctypes.windll.kernel32.GetLastError() == 183:  # ERROR_ALREADY_EXISTS
+        sys.exit(0)
+
     _load_audio()
     icon = pystray.Icon(
         name="hush",
