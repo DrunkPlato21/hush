@@ -17,6 +17,10 @@ PIN THE ICON NEXT TO THE CLOCK
   3. Find "hush" and toggle it ON
 
 AUTO-START WITH WINDOWS (optional)
-  1. Press Win+R, type:  shell:startup  and hit Enter
-  2. Drop a shortcut to hush.exe into that folder
+  1. Press Win+R, type: taskschd.msc and hit Enter
+  2. Click "Create Basic Task" in the right panel
+  3. Name it "Hush", click Next
+  4. Set trigger to "When I log on", click Next
+  5. Set action to "Start a program", click Next
+  6. Browse to hush.exe, click Next then Finish
   Hush will now start automatically when you log in.
