@@ -29,6 +29,8 @@ Audio files:
   (30 min loop; crossfade is baked in at load time.)
 """
 
+__version__ = "1.0.0"
+
 import os
 import sys
 import threading
@@ -352,7 +354,7 @@ def main():
     icon = pystray.Icon(
         name="hush",
         icon=_make_icon(active=False, noise_type="pink"),
-        title="Hush",
+        title=f"Hush v{__version__}",
         menu=_build_menu(),
     )
     icon.run()
