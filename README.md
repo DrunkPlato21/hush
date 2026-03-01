@@ -33,9 +33,17 @@ Hush is the thing you install once and never think about again.
 
 ## Screenshots
 
-> *It's a tray icon. There's not much to show.*
->
-> Right-click the icon near your clock to get the menu. That's the whole UI.
+The icon lives next to your clock. That's the whole UI.
+
+![Tray icon](screenshots/tray-icon.png)
+
+Right-click for the menu — pick your noise type, play/pause, or adjust volume.
+
+![Menu](screenshots/menu.png)
+
+Double-click the icon to open the volume slider.
+
+![Volume slider](screenshots/volume-slider.png)
 
 ---
 
