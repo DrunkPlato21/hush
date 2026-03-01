@@ -5,7 +5,7 @@ setlocal
 cd /d "%~dp0"
 
 :: Read version from hush.py
-for /f "delims=" %%i in ('python -c "import re; print(re.search(r\"__version__ = '(.+?)'\", open('hush.py').read()).group(1))"') do set VERSION=%%i
+for /f "delims=" %%i in ('python _get_version.py') do set VERSION=%%i
 if "%VERSION%"=="" (
     echo ERROR: Could not read version from hush.py
     pause
