@@ -70,9 +70,9 @@ The `.flac` audio files must be in the same directory as `hush.py`.
 ```bat
 pip install pyinstaller
 pyinstaller --noconsole --onefile ^
-  --add-data "pink_noise.flac;." ^
-  --add-data "brown_noise.flac;." ^
-  --add-data "grey_noise.flac;." ^
+  --add-data "pink_noise.ogg;." ^
+  --add-data "brown_noise.ogg;." ^
+  --add-data "grey_noise.ogg;." ^
   hush.py
 ```
 
@@ -104,15 +104,15 @@ Windows hides new tray icons behind the `^` overflow arrow by default. To pin it
 
 ## Audio Files
 
-The bundled `.flac` files are 30-minute stereo recordings at 44.1 kHz with a 10-second crossfade baked in at the loop point so the repeat is seamless.
+The bundled `.ogg` files are 5-minute stereo recordings at 44.1 kHz with a 10-second crossfade baked in at the loop point so the repeat is seamless.
 
 To substitute your own audio:
 
 ```bat
-ffmpeg -ss 120 -i source.webm -t 1800 -ac 2 -ar 44100 output.flac -y
+ffmpeg -ss 120 -i source.webm -t 300 -ac 2 -ar 44100 -c:a libvorbis -q:a 4 output.ogg -y
 ```
 
-Replace the appropriate `.flac` file and restart Hush.
+Replace the appropriate `.ogg` file and restart Hush.
 
 ---
 

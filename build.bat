@@ -16,9 +16,9 @@ if exist hush.spec del hush.spec
 :: Build exe
 pyinstaller --noconsole --onefile ^
   --icon "pink_circle.ico" ^
-  --add-data "pink_noise.flac;." ^
-  --add-data "brown_noise.flac;." ^
-  --add-data "grey_noise.flac;." ^
+  --add-data "pink_noise.ogg;." ^
+  --add-data "brown_noise.ogg;." ^
+  --add-data "grey_noise.ogg;." ^
   hush.py
 
 if errorlevel 1 (
@@ -30,7 +30,7 @@ if errorlevel 1 (
 :: Package into zip
 set ZIPNAME=hush-v%VERSION%.zip
 if exist %ZIPNAME% del %ZIPNAME%
-powershell -Command "Compress-Archive -Path 'dist\hush.exe','pink_noise.flac','brown_noise.flac','grey_noise.flac' -DestinationPath '%ZIPNAME%' -Force"
+powershell -Command "Compress-Archive -Path 'dist\hush.exe','pink_noise.ogg','brown_noise.ogg','grey_noise.ogg' -DestinationPath '%ZIPNAME%' -Force"
 
 echo.
 echo Done: %ZIPNAME%

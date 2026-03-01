@@ -11,7 +11,7 @@ Run:
 
 Package as .exe:
   pip install pyinstaller
-  pyinstaller --noconsole --onefile --add-data "pink_noise.flac;." --add-data "brown_noise.flac;." --add-data "grey_noise.flac;." hush.py
+  pyinstaller --noconsole --onefile --add-data "pink_noise.ogg;." --add-data "brown_noise.ogg;." --add-data "grey_noise.ogg;." hush.py
   # Output: dist\\hush.exe
 
 Auto-start: Drop a shortcut into %APPDATA%\\Microsoft\\Windows\\Start Menu\\Programs\\Startup
@@ -23,13 +23,13 @@ Tray icon always visible:
   The icon will then always show next to the clock.
 
 Audio files:
-  pink_noise.flac, brown_noise.flac, and grey_noise.flac must be in the same directory as this script.
+  pink_noise.ogg, brown_noise.ogg, and grey_noise.ogg must be in the same directory as this script.
   They loop seamlessly. Re-generate with any audio you like:
-    ffmpeg -ss 120 -i source.webm -t 1800 -ac 2 -ar 44100 output.flac -y
-  (30 min loop; crossfade is baked in at load time.)
+    ffmpeg -ss 120 -i source.webm -t 300 -ac 2 -ar 44100 -c:a libvorbis -q:a 4 output.ogg -y
+  (5 min loop; crossfade is baked in at load time.)
 """
 
-__version__ = "1.0.0"
+__version__ = '1.0.0'
 
 import os
 import sys
@@ -51,9 +51,9 @@ else:
     _BASE = os.path.dirname(os.path.abspath(__file__))
 
 AUDIO_FILES = {
-    "pink":  os.path.join(_BASE, "pink_noise.flac"),
-    "brown": os.path.join(_BASE, "brown_noise.flac"),
-    "grey":  os.path.join(_BASE, "grey_noise.flac"),
+    "pink":  os.path.join(_BASE, "pink_noise.ogg"),
+    "brown": os.path.join(_BASE, "brown_noise.ogg"),
+    "grey":  os.path.join(_BASE, "grey_noise.ogg"),
 }
 
 # ---------------------------------------------------------------------------
