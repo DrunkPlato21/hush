@@ -44,7 +44,7 @@ if errorlevel 1 (
 :: Package into zip
 set ZIPNAME=hush-v%VERSION%.zip
 if exist %ZIPNAME% del %ZIPNAME%
-powershell -Command "Compress-Archive -Path 'dist\hush.exe' -DestinationPath '%ZIPNAME%' -Force"
+powershell -Command "Compress-Archive -Path 'dist\hush.exe','README.txt' -DestinationPath '%ZIPNAME%' -Force"
 
 if errorlevel 1 (
     echo ERROR: Failed to create zip.
