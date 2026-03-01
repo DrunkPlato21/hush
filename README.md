@@ -37,7 +37,9 @@ The icon lives next to your clock. That's the whole UI.
 
 **Single-click** the icon to toggle play/pause. Bright = playing, dim = paused.
 
-![Tray icon on](screenshots/tray-icon.png) ![Tray icon off](screenshots/tray-icon-off.png)
+![Tray icon on](screenshots/tray-icon.png)
+
+![Tray icon off](screenshots/tray-icon-off.png)
 
 Right-click for the menu — pick your noise type, play/pause, or adjust volume.
 
