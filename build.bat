@@ -1,11 +1,24 @@
 @echo off
 setlocal
 
+:: Always run from the script's own directory
+cd /d "%~dp0"
+
 :: Read version from hush.py
 for /f "delims=" %%i in ('python -c "import re; print(re.search(r\"__version__ = '(.+?)'\", open('hush.py').read()).group(1))"') do set VERSION=%%i
+if "%VERSION%"=="" (
+    echo ERROR: Could not read version from hush.py
+    pause
+    exit /b 1
+)
 echo Building Hush v%VERSION%...
 
 :: Activate venv
+if not exist venv\Scripts\activate.bat (
+    echo ERROR: venv not found. Run: python -m venv venv ^&^& venv\Scripts\activate ^&^& pip install pyinstaller pystray Pillow numpy sounddevice soundfile
+    pause
+    exit /b 1
+)
 call venv\Scripts\activate.bat
 
 :: Clean previous build
@@ -22,7 +35,8 @@ pyinstaller --noconsole --onefile ^
   hush.py
 
 if errorlevel 1 (
-    echo Build failed.
+    echo.
+    echo ERROR: PyInstaller build failed. See output above.
     pause
     exit /b 1
 )
@@ -30,7 +44,13 @@ if errorlevel 1 (
 :: Package into zip
 set ZIPNAME=hush-v%VERSION%.zip
 if exist %ZIPNAME% del %ZIPNAME%
-powershell -Command "Compress-Archive -Path 'dist\hush.exe','pink_noise.ogg','brown_noise.ogg','grey_noise.ogg' -DestinationPath '%ZIPNAME%' -Force"
+powershell -Command "Compress-Archive -Path 'dist\hush.exe' -DestinationPath '%ZIPNAME%' -Force"
+
+if errorlevel 1 (
+    echo ERROR: Failed to create zip.
+    pause
+    exit /b 1
+)
 
 echo.
 echo Done: %ZIPNAME%
